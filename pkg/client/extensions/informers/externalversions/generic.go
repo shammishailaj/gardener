@@ -39,6 +39,8 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 	// Group=extensions.gardener.cloud, Version=v1alpha1
 	case v1alpha1.SchemeGroupVersion.WithResource("operatingsystemconfigs"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Extensions().V1alpha1().OperatingSystemConfigs().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("workerpools"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Extensions().V1alpha1().WorkerPools().Informer()}, nil
 
 	}
 

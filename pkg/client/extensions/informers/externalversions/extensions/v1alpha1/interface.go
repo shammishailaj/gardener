@@ -10,6 +10,8 @@ import (
 type Interface interface {
 	// OperatingSystemConfigs returns a OperatingSystemConfigInformer.
 	OperatingSystemConfigs() OperatingSystemConfigInformer
+	// WorkerPools returns a WorkerPoolInformer.
+	WorkerPools() WorkerPoolInformer
 }
 
 type version struct {
@@ -26,4 +28,9 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 // OperatingSystemConfigs returns a OperatingSystemConfigInformer.
 func (v *version) OperatingSystemConfigs() OperatingSystemConfigInformer {
 	return &operatingSystemConfigInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// WorkerPools returns a WorkerPoolInformer.
+func (v *version) WorkerPools() WorkerPoolInformer {
+	return &workerPoolInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
